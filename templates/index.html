@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<header class="topbar">
+    <h1>STL_Object_Visualization_Cost_Calculations</h1>
+
+    <div class="upload-section">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="files" accept=".stl" multiple required>
+            <button type="submit">Analyze Files</button>
+        </form>
+
+        <button id="syncAllBtn">Apply Inputs To All</button>
+    </div>
+</header>
+
+<div id="partsContainer"></div>
+
+<script>
+    window.uploadedFiles = {{ files | tojson | safe }};
+</script>
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/STLLoader.js"></script>
+
+<!-- JS -->
+<script src="/static/js/viewer.js?v=2"></script>
+<script src="/static/js/sync_inputs.js?v=1"></script>
+<script src="/static/js/calculate.js?v=1"></script>
+<script src="/static/js/dashboard.js?v=1"></script>
+
+{% endblock %}
